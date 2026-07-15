@@ -4,19 +4,31 @@ declare module '@apiverve/captchagenerator' {
     secure?: boolean;
   }
 
+  /**
+   * Describes fields the current plan does not unlock. Locked fields arrive as null
+   * in `data`; `locked_fields` names them, using dot paths for nested fields.
+   * Absent when the plan unlocks everything.
+   */
+  export interface PremiumInfo {
+    message: string;
+    upgrade_url: string;
+    locked_fields: string[];
+  }
+
   export interface captchageneratorResponse {
     status: string;
     error: string | null;
     data: CaptchaGeneratorData;
     code?: number;
+    premium?: PremiumInfo;
   }
 
 
   interface CAPTCHAGeneratorData {
-      id:          string;
-      expires:     number;
-      solution:    string;
-      downloadURL: string;
+      id:          null | string;
+      expires:     number | null;
+      solution:    null | string;
+      downloadURL: null | string;
   }
 
   export default class captchageneratorWrapper {
