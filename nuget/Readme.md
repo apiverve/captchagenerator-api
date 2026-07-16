@@ -51,7 +51,7 @@ Here's a simple example to get you started quickly:
 
 ```csharp
 using System;
-using APIVerve;
+using APIVerve.API.CaptchaGenerator;
 
 class Program
 {
@@ -114,7 +114,7 @@ The modern async/await pattern provides the best performance and code readabilit
 ```csharp
 using System;
 using System.Threading.Tasks;
-using APIVerve;
+using APIVerve.API.CaptchaGenerator;
 
 public class Example
 {
@@ -144,7 +144,7 @@ If you need to use synchronous code, you can use the `Execute` method:
 
 ```csharp
 using System;
-using APIVerve;
+using APIVerve.API.CaptchaGenerator;
 
 public class Example
 {
@@ -179,7 +179,7 @@ The API client provides comprehensive error handling. Here are some examples:
 ```csharp
 using System;
 using System.Threading.Tasks;
-using APIVerve;
+using APIVerve.API.CaptchaGenerator;
 
 public class Example
 {
@@ -229,7 +229,7 @@ public class Example
 ```csharp
 using System;
 using System.Threading.Tasks;
-using APIVerve;
+using APIVerve.API.CaptchaGenerator;
 
 public class Example
 {
@@ -349,10 +349,10 @@ using (var apiClient = new CaptchaGeneratorAPIClient("[YOUR_API_KEY]"))
   "status": "ok",
   "error": null,
   "data": {
-    "id": "95ba102b-3973-45b6-8849-ab02a06e4821",
-    "expires": 1740173352742,
-    "solution": "glrbe",
-    "downloadURL": "https://storage.googleapis.com/apiverve.appspot.com/captchagenerator/95ba102b-3973-45b6-8849-ab02a06e4821.png?GoogleAccessId=635500398038-compute%40developer.gserviceaccount.com&Expires=1740173352&Signature=S5WBxutmxPr82LlQyROZ15Xff%2BFRvkZV1Yof927tdpsnHVG9mO4yqPVxK9CH7MhzhYWG8OQQAVsGyWMYLQzU06PVSxlAE5g05xnU2Vi513x342yiUSodNaS3vcEkMeA1ioCGRZ%2Bv1n2FCJNOIQbeGxsiTjCiwrkKag9Gl4LS0hOl4Y%2FzF%2BcgxRfQnre3vptcHe1N2fLQf8JNd26hk0IiAms%2Bqj5teE3V1FKDsUmMk583ZQMBsRHjJG0g4KdtgBGujY3TL4jPgdj7D4VjOm%2F3TKj6n5oRkjvkYl64FnGCELW%2FsoEaxChsLrxirz5Rvvq7KD09GYJbuAoNPN9L4cjbAw%3D%3D"
+    "id": "e183c54c-5bf6-455e-bc96-195685cee71c",
+    "expires": 1766010041360,
+    "solution": "fwvct",
+    "downloadURL": "https://storage.googleapis.com/apiverve/APIData/captchagenerator/e183c54c-5bf6-455e-bc96-195685cee71c.png?GoogleAccessId=635500398038-compute%40developer.gserviceaccount.com&Expires=1766010041&Signature=LLBhTrpVAk%2Bzx%2B2U7sdbIfjUOm%2FEe4hP7ebqGfphThctFRbHs9oyHPJ3J7BCAu71WswQr1qOKh%2BQddOPTGFCVUVL%2BlN1Qxt%2BlIBXYVM7%2FzW3YlfbHmFbXaesr%2BC7pFW6ekZ88fobbOP%2FcGbKdtVL1Vz9ceomtqUw%2Bl9Mwy3FCkpmwPHzGxW56%2BAHB%2B5TQgH2S%2FcmkJkPUxMSGnztQerMNB7V2JrhpuBLZl7N%2FPRucwJswVX6LYYOfNlvrFuxwJwS%2BBot9TesdYlPPDZgOfBo0%2FGgGMzIc753aPUIzkJoeMyPZgJGRilPQNrWJgp%2F7mmx4WNq6QgdIZPlQ36FlDHMsg%3D%3D"
   }
 }
 ```
