@@ -1,13 +1,13 @@
-# [Captcha Generator API](https://apiverve.com/marketplace/captchagenerator?utm_source&#x3D;github&amp;utm_medium&#x3D;readme)
+# [Captcha Generator API](https://apiverve.com/marketplace/captchagenerator?utm_source&#x3D;github&amp;utm_medium&#x3D;referral&amp;utm_content&#x3D;readme)
 
-Captcha Generator is a simple tool for generating captchas. It returns a random string of characters that can be used as a captcha.
+Captcha Generator generates visual captcha challenges with signed image URLs and text solutions. Each request delivers a challenge image, its correct answer string, an expiration timestamp, and a unique identifier.
 
 The Captcha Generator API provides a simple, reliable way to integrate captcha generator functionality into your applications. Built for developers who need production-ready captcha generator capabilities without the complexity of building from scratch.
 
-**[View API Details →](https://apiverve.com/marketplace/captchagenerator?utm_source&#x3D;github&amp;utm_medium&#x3D;readme)**
+**[View API Details →](https://apiverve.com/marketplace/captchagenerator?utm_source&#x3D;github&amp;utm_medium&#x3D;referral&amp;utm_content&#x3D;readme)**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![API Status](https://img.shields.io/badge/Status-Active-green.svg)](https://apiverve.com/marketplace/captchagenerator?utm_source&#x3D;github&amp;utm_medium&#x3D;readme)
+[![API Status](https://img.shields.io/badge/Status-Active-green.svg)](https://apiverve.com/marketplace/captchagenerator?utm_source&#x3D;github&amp;utm_medium&#x3D;referral&amp;utm_content&#x3D;readme)
 [![Method](https://img.shields.io/badge/Method-GET-blue.svg)](#)
 [![Platform](https://img.shields.io/badge/Platform-Multi--Platform-orange.svg)](#installation)
 
@@ -157,7 +157,7 @@ go get github.com/apiverve/captchagenerator-api/go
 
 ## Documentation
 
-- 🏠 **API Home:** [Captcha Generator API](https://apiverve.com/marketplace/captchagenerator?utm_source&#x3D;github&amp;utm_medium&#x3D;readme)
+- 🏠 **API Home:** [Captcha Generator API](https://apiverve.com/marketplace/captchagenerator?utm_source&#x3D;github&amp;utm_medium&#x3D;referral&amp;utm_content&#x3D;readme)
 - 📚 **API Reference:** [docs.apiverve.com/ref/captchagenerator](https://docs.apiverve.com/ref/captchagenerator)
 - 📖 **OpenAPI Spec:** [openapi.yaml](./openapi.yaml)
 - 💡 **Examples:** [examples/](./examples/)
@@ -219,7 +219,7 @@ A real response from the Captcha Generator API:
 
 ## Support & Community
 
-- 🏠 **API Home**: [Captcha Generator API](https://apiverve.com/marketplace/captchagenerator?utm_source&#x3D;github&amp;utm_medium&#x3D;readme)
+- 🏠 **API Home**: [Captcha Generator API](https://apiverve.com/marketplace/captchagenerator?utm_source&#x3D;github&amp;utm_medium&#x3D;referral&amp;utm_content&#x3D;readme)
 - 💬 **Support**: [https://apiverve.com/contact](https://apiverve.com/contact)
 - 🐛 **Issues**: [GitHub Issues](../../issues)
 - 📖 **Documentation**: [https://docs.apiverve.com](https://docs.apiverve.com)
