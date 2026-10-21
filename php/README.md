@@ -1,6 +1,6 @@
 # Captcha Generator API - PHP Package
 
-Captcha Generator is a simple tool for generating captchas. It returns a random string of characters that can be used as a captcha.
+Captcha Generator generates visual captcha challenges with signed image URLs and text solutions. Each request delivers a challenge image, its correct answer string, an expiration timestamp, and a unique identifier.
 
 ## Installation
 
@@ -84,11 +84,11 @@ $client = new Client(
 
 ## Documentation
 
-For more information, visit the [API Documentation](https://docs.apiverve.com/ref/captchagenerator?utm_source=packagist&utm_medium=readme).
+For more information, visit the [API Documentation](https://docs.apiverve.com/ref/captchagenerator?utm_source=packagist&utm_medium=referral&utm_content=readme).
 
 ## Support
 
-- Website: [https://apiverve.com/marketplace/captchagenerator?utm_source=php&utm_medium=readme](https://apiverve.com/marketplace/captchagenerator?utm_source=php&utm_medium=readme)
+- Website: [https://apiverve.com/marketplace/captchagenerator?utm_source=php&utm_medium=referral&utm_content=readme](https://apiverve.com/marketplace/captchagenerator?utm_source=php&utm_medium=referral&utm_content=readme)
 - Email: hello@apiverve.com
 
 ## License
