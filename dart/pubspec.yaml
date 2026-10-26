@@ -1,7 +1,7 @@
 name: apiverve_captchagenerator
-description: Captcha Generator is a simple tool for generating captchas. It returns a random string of characters that can be used as a captcha.
-version: 1.1.14
-homepage: https://apiverve.com/marketplace/captchagenerator?utm_source=dart&utm_medium=homepage
+description: "Captcha Generator generates visual captcha challenges with signed image URLs and text solutions. Each request delivers a challenge image, its correct answer string, an expiration timestamp, and a unique identifier."
+version: 1.2.3
+homepage: https://apiverve.com/marketplace/captchagenerator?utm_source=dart&utm_medium=referral&utm_content=homepage
 repository: https://github.com/apiverve/captchagenerator-api/tree/main/dart
 
 environment:
