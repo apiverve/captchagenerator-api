@@ -1,6 +1,6 @@
 {
   "name": "@apiverve/captchagenerator",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Captcha Generator generates visual captcha challenges with signed image URLs and text solutions. Each request delivers a challenge image, its correct answer string, an expiration timestamp, and a unique identifier.",
   "main": "index.js",
   "types": "index.d.ts",
