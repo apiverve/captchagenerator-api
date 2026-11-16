@@ -23,7 +23,21 @@ class ValidationError(CaptchageneratorAPIClientError):
 
 class CaptchageneratorAPIClient:
     # Validation rules for parameters (generated from schema)
-    VALIDATION_RULES = {}
+    VALIDATION_RULES = {
+        "type": {"type": "string", "required": False, "default": "text"},
+        "length": {"type": "integer", "required": False, "min": 4, "max": 8, "default": 5},
+        "charset": {"type": "string", "required": False, "default": "lowercase"},
+        "unambiguous": {"type": "boolean", "required": False, "default": False},
+        "difficulty": {"type": "string", "required": False, "default": "medium"},
+        "width": {"type": "integer", "required": False, "min": 100, "max": 400, "default": 200},
+        "height": {"type": "integer", "required": False, "min": 40, "max": 150, "default": 70},
+        "format": {"type": "string", "required": False, "default": "gif"},
+        "color": {"type": "string", "required": False},
+        "backgroundColor": {"type": "string", "required": False, "default": "#ffffff"},
+        "audio": {"type": "boolean", "required": False, "default": False},
+        "audioNoise": {"type": "string", "required": False, "default": "none"},
+        "inline": {"type": "boolean", "required": False, "default": False}
+    }
 
     # Format validation patterns
     FORMAT_PATTERNS = {

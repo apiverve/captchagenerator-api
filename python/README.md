@@ -1,7 +1,7 @@
 Captcha Generator API
 ============
 
-Captcha Generator generates visual captcha challenges with signed image URLs and text solutions. Each request delivers a challenge image, its correct answer string, an expiration timestamp, and a unique identifier.
+Captcha Generator creates a new captcha on every call: distorted characters or a simple math question as a GIF or PNG, with the answer to check on your server. Add audio=true for a spoken version, the accessible alternative for visitors who can't see the image.
 
 
 [![PyPI version](https://img.shields.io/pypi/v/apiverve-captchagenerator.svg)](https://pypi.org/project/apiverve-captchagenerator/)
@@ -43,11 +43,25 @@ from apiverve_captchagenerator.apiClient import CaptchageneratorAPIClient
 # Initialize the client with your APIVerve API key
 api = CaptchageneratorAPIClient("[YOUR_API_KEY]")
 
-# This API does not require a Query
+query = {
+    "type": "text",
+    "length": 5,
+    "charset": "lowercase",
+    "unambiguous": true,
+    "difficulty": "medium",
+    "width": 200,
+    "height": 70,
+    "format": "gif",
+    "color": "#1d3557",
+    "backgroundColor": "#ffffff",
+    "audio": true,
+    "audioNoise": "none",
+    "inline": true
+}
 
 try:
     # Make the API call
-    result = api.execute()
+    result = api.execute(query)
 
     # Print the result
     print(result)
@@ -81,14 +95,28 @@ Using the API client, you can perform requests to the API.
 ###### Define Query
 
 ```python
-# This API does not require a Query
+query = {
+    "type": "text",
+    "length": 5,
+    "charset": "lowercase",
+    "unambiguous": true,
+    "difficulty": "medium",
+    "width": 200,
+    "height": 70,
+    "format": "gif",
+    "color": "#1d3557",
+    "backgroundColor": "#ffffff",
+    "audio": true,
+    "audioNoise": "none",
+    "inline": true
+}
 ```
 
 ###### Simple Request
 
 ```python
 # Make a request to the API
-result = api.execute()
+result = api.execute(query)
 
 # Print the result
 print(result)
@@ -104,7 +132,7 @@ print(result)
     "id": "e183c54c-5bf6-455e-bc96-195685cee71c",
     "expires": 1766010041360,
     "solution": "fwvct",
-    "downloadURL": "https://storage.googleapis.com/apiverve/APIData/captchagenerator/e183c54c-5bf6-455e-bc96-195685cee71c.png?GoogleAccessId=635500398038-compute%40developer.gserviceaccount.com&Expires=1766010041&Signature=LLBhTrpVAk%2Bzx%2B2U7sdbIfjUOm%2FEe4hP7ebqGfphThctFRbHs9oyHPJ3J7BCAu71WswQr1qOKh%2BQddOPTGFCVUVL%2BlN1Qxt%2BlIBXYVM7%2FzW3YlfbHmFbXaesr%2BC7pFW6ekZ88fobbOP%2FcGbKdtVL1Vz9ceomtqUw%2Bl9Mwy3FCkpmwPHzGxW56%2BAHB%2B5TQgH2S%2FcmkJkPUxMSGnztQerMNB7V2JrhpuBLZl7N%2FPRucwJswVX6LYYOfNlvrFuxwJwS%2BBot9TesdYlPPDZgOfBo0%2FGgGMzIc753aPUIzkJoeMyPZgJGRilPQNrWJgp%2F7mmx4WNq6QgdIZPlQ36FlDHMsg%3D%3D"
+    "downloadURL": "https://storage.googleapis.com/apiverve/APIData/captchagenerator/e183c54c-5bf6-455e-bc96-195685cee71c.gif?GoogleAccessId=635500398038-compute%40developer.gserviceaccount.com&Expires=1766010041&Signature=LLBhTrpVAk%2Bzx%2B2U7sdbIfjUOm%2FEe4hP7ebqGfphThctFRbHs9oyHPJ3J7BCAu71WswQr1qOKh%2BQddOPTGFCVUVL%2BlN1Qxt%2BlIBXYVM7%2FzW3YlfbHmFbXaesr%2BC7pFW6ekZ88fobbOP%2FcGbKdtVL1Vz9ceomtqUw%2Bl9Mwy3FCkpmwPHzGxW56%2BAHB%2B5TQgH2S%2FcmkJkPUxMSGnztQerMNB7V2JrhpuBLZl7N%2FPRucwJswVX6LYYOfNlvrFuxwJwS%2BBot9TesdYlPPDZgOfBo0%2FGgGMzIc753aPUIzkJoeMyPZgJGRilPQNrWJgp%2F7mmx4WNq6QgdIZPlQ36FlDHMsg%3D%3D"
   }
 }
 ```
@@ -122,10 +150,24 @@ from apiverve_captchagenerator.apiClient import CaptchageneratorAPIClient, Captc
 
 api = CaptchageneratorAPIClient("[YOUR_API_KEY]")
 
-# This API does not require a Query
+query = {
+    "type": "text",
+    "length": 5,
+    "charset": "lowercase",
+    "unambiguous": true,
+    "difficulty": "medium",
+    "width": 200,
+    "height": 70,
+    "format": "gif",
+    "color": "#1d3557",
+    "backgroundColor": "#ffffff",
+    "audio": true,
+    "audioNoise": "none",
+    "inline": true
+}
 
 try:
-    result = api.execute()
+    result = api.execute(query)
     print("Success!")
     print(result)
 except CaptchageneratorAPIClientError as e:
@@ -143,10 +185,24 @@ from apiverve_captchagenerator.apiClient import CaptchageneratorAPIClient, Captc
 
 api = CaptchageneratorAPIClient("[YOUR_API_KEY]")
 
-# This API does not require a Query
+query = {
+    "type": "text",
+    "length": 5,
+    "charset": "lowercase",
+    "unambiguous": true,
+    "difficulty": "medium",
+    "width": 200,
+    "height": 70,
+    "format": "gif",
+    "color": "#1d3557",
+    "backgroundColor": "#ffffff",
+    "audio": true,
+    "audioNoise": "none",
+    "inline": true
+}
 
 try:
-    result = api.execute()
+    result = api.execute(query)
 
     # Check for successful response
     if result.get('status') == 'success':
@@ -177,12 +233,26 @@ The client supports the context manager protocol for automatic resource cleanup:
 ```python
 from apiverve_captchagenerator.apiClient import CaptchageneratorAPIClient, CaptchageneratorAPIClientError
 
-# This API does not require a Query
+query = {
+    "type": "text",
+    "length": 5,
+    "charset": "lowercase",
+    "unambiguous": true,
+    "difficulty": "medium",
+    "width": 200,
+    "height": 70,
+    "format": "gif",
+    "color": "#1d3557",
+    "backgroundColor": "#ffffff",
+    "audio": true,
+    "audioNoise": "none",
+    "inline": true
+}
 
 # Using context manager ensures proper cleanup
 with CaptchageneratorAPIClient("[YOUR_API_KEY]") as api:
     try:
-        result = api.execute()
+        result = api.execute(query)
         print(result)
     except CaptchageneratorAPIClientError as e:
         print(f"Error: {e.message}")
@@ -203,10 +273,24 @@ from apiverve_captchagenerator.apiClient import CaptchageneratorAPIClient
 # Enable debug mode
 api = CaptchageneratorAPIClient("[YOUR_API_KEY]", debug=True)
 
-# This API does not require a Query
+query = {
+    "type": "text",
+    "length": 5,
+    "charset": "lowercase",
+    "unambiguous": true,
+    "difficulty": "medium",
+    "width": 200,
+    "height": 70,
+    "format": "gif",
+    "color": "#1d3557",
+    "backgroundColor": "#ffffff",
+    "audio": true,
+    "audioNoise": "none",
+    "inline": true
+}
 
 # Debug information will be printed to console
-result = api.execute()
+result = api.execute(query)
 ```
 
 ### Manual Session Management
@@ -218,10 +302,24 @@ from apiverve_captchagenerator.apiClient import CaptchageneratorAPIClient
 
 api = CaptchageneratorAPIClient("[YOUR_API_KEY]")
 
-# This API does not require a Query
+query = {
+    "type": "text",
+    "length": 5,
+    "charset": "lowercase",
+    "unambiguous": true,
+    "difficulty": "medium",
+    "width": 200,
+    "height": 70,
+    "format": "gif",
+    "color": "#1d3557",
+    "backgroundColor": "#ffffff",
+    "audio": true,
+    "audioNoise": "none",
+    "inline": true
+}
 
 try:
-    result = api.execute()
+    result = api.execute(query)
     print(result)
 finally:
     # Manually close the session when done
