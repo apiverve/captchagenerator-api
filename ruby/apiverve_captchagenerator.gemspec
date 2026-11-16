@@ -2,12 +2,12 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "apiverve_captchagenerator"
-  spec.version       = "1.2.5"
+  spec.version       = "1.2.6"
   spec.authors       = ["APIVerve"]
   spec.email         = ["hello@apiverve.com"]
 
   spec.summary       = "Captcha Generator API - Ruby Client"
-  spec.description   = "Captcha Generator generates visual captcha challenges with signed image URLs and text solutions. Each request delivers a challenge image, its correct answer string, an expiration timestamp, and a unique identifier."
+  spec.description   = "Captcha Generator creates a new captcha on every call: distorted characters or a simple math question as a GIF or PNG, with the answer to check on your server. Add audio=true for a spoken version, the accessible alternative for visitors who can't see the image."
   spec.homepage      = "https://apiverve.com/marketplace/captchagenerator?utm_source=ruby&utm_medium=referral&utm_content=homepage"
   spec.license       = "MIT"
   spec.required_ruby_version = ">= 2.7.0"

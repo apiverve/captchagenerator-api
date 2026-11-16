@@ -10,7 +10,7 @@ module APIVerve
     #
     # @example Basic usage
     #   client = APIVerve::Captchagenerator::Client.new(api_key: "your_api_key")
-    #   response = client.execute({})
+    #   response = client.execute({ type: "text", length: 5, charset: "lowercase", unambiguous: true, difficulty: "medium", width: 200, height: 70, format: "gif", color: "#1d3557", backgroundColor: "#ffffff", audio: true, audioNoise: "none", inline: true })
     #   puts response
     #
     # @see https://apiverve.com/marketplace/captchagenerator?utm_source=ruby&utm_medium=referral&utm_content=readme
@@ -19,7 +19,7 @@ module APIVerve
       DEFAULT_TIMEOUT = 30
 
       # Validation rules for parameters
-      VALIDATION_RULES = {}
+      VALIDATION_RULES = { 'type' => { type: 'string', required: false }, 'length' => { type: 'integer', required: false, min: 4, max: 8 }, 'charset' => { type: 'string', required: false }, 'unambiguous' => { type: 'boolean', required: false }, 'difficulty' => { type: 'string', required: false }, 'width' => { type: 'integer', required: false, min: 100, max: 400 }, 'height' => { type: 'integer', required: false, min: 40, max: 150 }, 'format' => { type: 'string', required: false }, 'color' => { type: 'string', required: false }, 'backgroundColor' => { type: 'string', required: false }, 'audio' => { type: 'boolean', required: false }, 'audioNoise' => { type: 'string', required: false }, 'inline' => { type: 'boolean', required: false } }
 
       # Format validation patterns
       FORMAT_PATTERNS = {

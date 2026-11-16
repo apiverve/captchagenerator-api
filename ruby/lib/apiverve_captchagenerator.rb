@@ -4,6 +4,6 @@ require_relative "apiverve_captchagenerator/client"
 
 module APIVerve
   module Captchagenerator
-    VERSION = "1.2.5"
+    VERSION = "1.2.6"
   end
 end
