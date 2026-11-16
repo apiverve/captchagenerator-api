@@ -15,7 +15,7 @@ use APIVerve\Captchagenerator\Exceptions\ValidationException;
  * @example Basic usage
  * ```php
  * $client = new Client('your_api_key');
- * $response = $client->execute([]);
+ * $response = $client->execute(['type' => 'text', 'length' => 5, 'charset' => 'lowercase', 'unambiguous' => true, 'difficulty' => 'medium', 'width' => 200, 'height' => 70, 'format' => 'gif', 'color' => '#1d3557', 'backgroundColor' => '#ffffff', 'audio' => true, 'audioNoise' => 'none', 'inline' => true]);
  * print_r($response);
  * ```
  *
@@ -33,7 +33,21 @@ class Client
     /**
      * Validation rules for parameters
      */
-    private const VALIDATION_RULES = [];
+    private const VALIDATION_RULES = [
+        'type' => ['type' => 'string', 'required' => false],
+        'length' => ['type' => 'integer', 'required' => false, 'min' => 4, 'max' => 8],
+        'charset' => ['type' => 'string', 'required' => false],
+        'unambiguous' => ['type' => 'boolean', 'required' => false],
+        'difficulty' => ['type' => 'string', 'required' => false],
+        'width' => ['type' => 'integer', 'required' => false, 'min' => 100, 'max' => 400],
+        'height' => ['type' => 'integer', 'required' => false, 'min' => 40, 'max' => 150],
+        'format' => ['type' => 'string', 'required' => false],
+        'color' => ['type' => 'string', 'required' => false],
+        'backgroundColor' => ['type' => 'string', 'required' => false],
+        'audio' => ['type' => 'boolean', 'required' => false],
+        'audioNoise' => ['type' => 'string', 'required' => false],
+        'inline' => ['type' => 'boolean', 'required' => false]
+    ];
 
     /**
      * Format validation patterns

@@ -1,6 +1,6 @@
 # Captcha Generator API - PHP Package
 
-Captcha Generator generates visual captcha challenges with signed image URLs and text solutions. Each request delivers a challenge image, its correct answer string, an expiration timestamp, and a unique identifier.
+Captcha Generator creates a new captcha on every call: distorted characters or a simple math question as a GIF or PNG, with the answer to check on your server. Add audio=true for a spoken version, the accessible alternative for visitors who can't see the image.
 
 ## Installation
 
@@ -27,7 +27,21 @@ use APIVerve\Captchagenerator\Client;
 $client = new Client('YOUR_API_KEY');
 
 // Make a request
-$response = $client->execute();
+$response = $client->execute([
+    'type' => 'text',
+    'length' => 5,
+    'charset' => 'lowercase',
+    'unambiguous' => true,
+    'difficulty' => 'medium',
+    'width' => 200,
+    'height' => 70,
+    'format' => 'gif',
+    'color' => '#1d3557',
+    'backgroundColor' => '#ffffff',
+    'audio' => true,
+    'audioNoise' => 'none',
+    'inline' => true
+]);
 
 // Print the response
 print_r($response);
@@ -42,7 +56,7 @@ use APIVerve\Captchagenerator\Exceptions\APIException;
 use APIVerve\Captchagenerator\Exceptions\ValidationException;
 
 try {
-    $response = $client->execute([]);
+    $response = $client->execute(['type' => 'text', 'length' => 5, 'charset' => 'lowercase', 'unambiguous' => true, 'difficulty' => 'medium', 'width' => 200, 'height' => 70, 'format' => 'gif', 'color' => '#1d3557', 'backgroundColor' => '#ffffff', 'audio' => true, 'audioNoise' => 'none', 'inline' => true]);
     print_r($response['data']);
 } catch (ValidationException $e) {
     echo "Validation error: " . implode(', ', $e->getErrors());
@@ -72,7 +86,7 @@ $client = new Client(
     "id": "e183c54c-5bf6-455e-bc96-195685cee71c",
     "expires": 1766010041360,
     "solution": "fwvct",
-    "downloadURL": "https://storage.googleapis.com/apiverve/APIData/captchagenerator/e183c54c-5bf6-455e-bc96-195685cee71c.png?GoogleAccessId=635500398038-compute%40developer.gserviceaccount.com&Expires=1766010041&Signature=LLBhTrpVAk%2Bzx%2B2U7sdbIfjUOm%2FEe4hP7ebqGfphThctFRbHs9oyHPJ3J7BCAu71WswQr1qOKh%2BQddOPTGFCVUVL%2BlN1Qxt%2BlIBXYVM7%2FzW3YlfbHmFbXaesr%2BC7pFW6ekZ88fobbOP%2FcGbKdtVL1Vz9ceomtqUw%2Bl9Mwy3FCkpmwPHzGxW56%2BAHB%2B5TQgH2S%2FcmkJkPUxMSGnztQerMNB7V2JrhpuBLZl7N%2FPRucwJswVX6LYYOfNlvrFuxwJwS%2BBot9TesdYlPPDZgOfBo0%2FGgGMzIc753aPUIzkJoeMyPZgJGRilPQNrWJgp%2F7mmx4WNq6QgdIZPlQ36FlDHMsg%3D%3D"
+    "downloadURL": "https://storage.googleapis.com/apiverve/APIData/captchagenerator/e183c54c-5bf6-455e-bc96-195685cee71c.gif?GoogleAccessId=635500398038-compute%40developer.gserviceaccount.com&Expires=1766010041&Signature=LLBhTrpVAk%2Bzx%2B2U7sdbIfjUOm%2FEe4hP7ebqGfphThctFRbHs9oyHPJ3J7BCAu71WswQr1qOKh%2BQddOPTGFCVUVL%2BlN1Qxt%2BlIBXYVM7%2FzW3YlfbHmFbXaesr%2BC7pFW6ekZ88fobbOP%2FcGbKdtVL1Vz9ceomtqUw%2Bl9Mwy3FCkpmwPHzGxW56%2BAHB%2B5TQgH2S%2FcmkJkPUxMSGnztQerMNB7V2JrhpuBLZl7N%2FPRucwJswVX6LYYOfNlvrFuxwJwS%2BBot9TesdYlPPDZgOfBo0%2FGgGMzIc753aPUIzkJoeMyPZgJGRilPQNrWJgp%2F7mmx4WNq6QgdIZPlQ36FlDHMsg%3D%3D"
   }
 }
 ```
