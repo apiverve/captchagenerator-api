@@ -30,7 +30,7 @@ class captchageneratorWrapper {
         this.baseURL = 'https://api.apiverve.com/v1/captchagenerator';
 
         // Validation rules for parameters (generated from schema)
-        this.validationRules = {};
+        this.validationRules = {"type":{"type":"string","required":false,"default":"text"},"length":{"type":"integer","required":false,"min":4,"max":8,"default":5},"charset":{"type":"string","required":false,"default":"lowercase"},"unambiguous":{"type":"boolean","required":false,"default":false},"difficulty":{"type":"string","required":false,"default":"medium"},"width":{"type":"integer","required":false,"min":100,"max":400,"default":200},"height":{"type":"integer","required":false,"min":40,"max":150,"default":70},"format":{"type":"string","required":false,"default":"gif"},"color":{"type":"string","required":false},"backgroundColor":{"type":"string","required":false,"default":"#ffffff"},"audio":{"type":"boolean","required":false,"default":false},"audioNoise":{"type":"string","required":false,"default":"none"},"inline":{"type":"boolean","required":false,"default":false}};
     }
 
     /**

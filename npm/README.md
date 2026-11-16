@@ -1,6 +1,6 @@
 # Captcha Generator API
 
-Captcha Generator generates visual captcha challenges with signed image URLs and text solutions. Each request delivers a challenge image, its correct answer string, an expiration timestamp, and a unique identifier.
+Captcha Generator creates a new captcha on every call: distorted characters or a simple math question as a GIF or PNG, with the answer to check on your server. Add audio=true for a spoken version, the accessible alternative for visitors who can't see the image.
 
 [![npm version](https://img.shields.io/npm/v/@apiverve/captchagenerator.svg)](https://www.npmjs.com/package/@apiverve/captchagenerator)
 
@@ -56,9 +56,23 @@ const api = new captchageneratorAPI({
 Using the API is simple. All you have to do is make a request. The API will return a response with the data you requested.
 
 ```javascript
-// This API does not require a Query
+var query = {
+  type: "text",
+  length: 5,
+  charset: "lowercase",
+  unambiguous: false,
+  difficulty: "medium",
+  width: 200,
+  height: 70,
+  format: "gif",
+  color: "#1d3557",
+  backgroundColor: "#ffffff",
+  audio: false,
+  audioNoise: "none",
+  inline: false
+};
 
-api.execute(function (error, data) {
+api.execute(query, function (error, data) {
     if (error) {
         return console.error(error);
     } else {
@@ -74,7 +88,21 @@ api.execute(function (error, data) {
 You can also use promises to make requests. The API returns a promise that you can use to handle the response.
 
 ```javascript
-// This API does not require a Query
+var query = {
+  type: "text",
+  length: 5,
+  charset: "lowercase",
+  unambiguous: false,
+  difficulty: "medium",
+  width: 200,
+  height: 70,
+  format: "gif",
+  color: "#1d3557",
+  backgroundColor: "#ffffff",
+  audio: false,
+  audioNoise: "none",
+  inline: false
+};
 
 api.execute(query)
     .then(data => {
@@ -93,7 +121,21 @@ You can also use async/await to make requests. The API returns a promise that yo
 
 ```javascript
 async function makeRequest() {
-    // This API does not require a Query
+    var query = {
+  type: "text",
+  length: 5,
+  charset: "lowercase",
+  unambiguous: false,
+  difficulty: "medium",
+  width: 200,
+  height: 70,
+  format: "gif",
+  color: "#1d3557",
+  backgroundColor: "#ffffff",
+  audio: false,
+  audioNoise: "none",
+  inline: false
+};
 
     try {
         const data = await api.execute(query);
@@ -116,7 +158,7 @@ async function makeRequest() {
     "id": "e183c54c-5bf6-455e-bc96-195685cee71c",
     "expires": 1766010041360,
     "solution": "fwvct",
-    "downloadURL": "https://storage.googleapis.com/apiverve/APIData/captchagenerator/e183c54c-5bf6-455e-bc96-195685cee71c.png?GoogleAccessId=635500398038-compute%40developer.gserviceaccount.com&Expires=1766010041&Signature=LLBhTrpVAk%2Bzx%2B2U7sdbIfjUOm%2FEe4hP7ebqGfphThctFRbHs9oyHPJ3J7BCAu71WswQr1qOKh%2BQddOPTGFCVUVL%2BlN1Qxt%2BlIBXYVM7%2FzW3YlfbHmFbXaesr%2BC7pFW6ekZ88fobbOP%2FcGbKdtVL1Vz9ceomtqUw%2Bl9Mwy3FCkpmwPHzGxW56%2BAHB%2B5TQgH2S%2FcmkJkPUxMSGnztQerMNB7V2JrhpuBLZl7N%2FPRucwJswVX6LYYOfNlvrFuxwJwS%2BBot9TesdYlPPDZgOfBo0%2FGgGMzIc753aPUIzkJoeMyPZgJGRilPQNrWJgp%2F7mmx4WNq6QgdIZPlQ36FlDHMsg%3D%3D"
+    "downloadURL": "https://storage.googleapis.com/apiverve/APIData/captchagenerator/e183c54c-5bf6-455e-bc96-195685cee71c.gif?GoogleAccessId=635500398038-compute%40developer.gserviceaccount.com&Expires=1766010041&Signature=LLBhTrpVAk%2Bzx%2B2U7sdbIfjUOm%2FEe4hP7ebqGfphThctFRbHs9oyHPJ3J7BCAu71WswQr1qOKh%2BQddOPTGFCVUVL%2BlN1Qxt%2BlIBXYVM7%2FzW3YlfbHmFbXaesr%2BC7pFW6ekZ88fobbOP%2FcGbKdtVL1Vz9ceomtqUw%2Bl9Mwy3FCkpmwPHzGxW56%2BAHB%2B5TQgH2S%2FcmkJkPUxMSGnztQerMNB7V2JrhpuBLZl7N%2FPRucwJswVX6LYYOfNlvrFuxwJwS%2BBot9TesdYlPPDZgOfBo0%2FGgGMzIc753aPUIzkJoeMyPZgJGRilPQNrWJgp%2F7mmx4WNq6QgdIZPlQ36FlDHMsg%3D%3D"
   }
 }
 ```

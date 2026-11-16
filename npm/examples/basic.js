@@ -14,12 +14,26 @@ const api = new captchageneratorAPI({
 });
 
 // Example query
-// This API does not require a Query
+var query = {
+  type: "text",
+  length: 5,
+  charset: "lowercase",
+  unambiguous: false,
+  difficulty: "medium",
+  width: 200,
+  height: 70,
+  format: "gif",
+  color: "#1d3557",
+  backgroundColor: "#ffffff",
+  audio: false,
+  audioNoise: "none",
+  inline: false
+};
 
 // Make the API request using callback
 console.log('Making request to Captcha Generator API...\n');
 
-api.execute(function (error, data) {
+api.execute(query, function (error, data) {
     if (error) {
         console.error('Error occurred:');
         if (error.error) {
