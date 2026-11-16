@@ -2,9 +2,10 @@ openapi: 3.0.4
 info:
   title: Captcha Generator
   description: >-
-    Captcha Generator generates visual captcha challenges with signed image URLs
-    and text solutions. Each request delivers a challenge image, its correct
-    answer string, an expiration timestamp, and a unique identifier.
+    Captcha Generator creates a new captcha on every call: distorted characters
+    or a simple math question as a GIF or PNG, with the answer to check on your
+    server. Add audio=true for a spoken version, the accessible alternative for
+    visitors who can't see the image.
   termsOfService: https://apiverve.com/terms/
   contact:
     name: APIVerve Support
@@ -21,10 +22,129 @@ paths:
     get:
       summary: Captcha Generator
       description: >-
-        Captcha Generator is a simple tool for generating captchas. It returns a
-        random string of characters that can be used as a captcha.
+        Generate a captcha image and its solution: random characters, or with
+        type=math an arithmetic question and its answer. Returns a signed URL
+        for the image (or a base64 data URI with inline=true), the answer
+        string, an ID and an expiry time, and with audio=true a spoken WAV
+        version of the same challenge for accessibility. Length, character set,
+        difficulty, size and format are adjustable.
       operationId: captchagenerator
-      parameters: []
+      parameters:
+        - name: type
+          in: query
+          schema:
+            type: string
+          required: false
+          description: >-
+            text draws random characters; math draws an arithmetic question such
+            as 7 + 4 = ? and the solution is the answer. length, charset and
+            unambiguous apply to text only
+          example: math
+        - name: length
+          in: query
+          schema:
+            type: integer
+          required: false
+          description: Number of characters in the captcha (4-8) (text only)
+          example: 6
+        - name: charset
+          in: query
+          schema:
+            type: string
+          required: false
+          description: >-
+            Characters to draw from: lowercase letters, uppercase letters,
+            mixed-case letters, digits, or letters and digits (text only)
+          example: alphanumeric
+        - name: unambiguous
+          in: query
+          schema:
+            type: boolean
+          required: false
+          description: >-
+            Leave out characters that are easy to misread: 0, O, o, 1, l, I, i
+            and Q (text only)
+          example: true
+        - name: difficulty
+          in: query
+          schema:
+            type: string
+          required: false
+          description: >-
+            Distortion level. Harder levels add more rotation, warp, noise
+            lines, background texture and a line through the text. For type=math
+            it also sets the numbers: small additions and subtractions at easy,
+            larger ones at medium, multiplication at hard. It does not change
+            the audio; see audioNoise
+          example: hard
+        - name: width
+          in: query
+          schema:
+            type: integer
+          required: false
+          description: Image width in pixels (100-400)
+          example: 240
+        - name: height
+          in: query
+          schema:
+            type: integer
+          required: false
+          description: Image height in pixels (40-150)
+          example: 80
+        - name: format
+          in: query
+          schema:
+            type: string
+          required: false
+          description: Image format
+          example: png
+        - name: color
+          in: query
+          schema:
+            type: string
+          required: false
+          description: >-
+            Text color as a hex code (e.g. #1d3557). By default each character
+            gets a random dark color
+          example: '#1d3557'
+        - name: backgroundColor
+          in: query
+          schema:
+            type: string
+          required: false
+          description: 'Background color as a hex code (e.g. #ffffff)'
+          example: '#f1faee'
+        - name: audio
+          in: query
+          schema:
+            type: boolean
+          required: false
+          description: >-
+            Also return a spoken WAV version of the same challenge in audioURL,
+            for visitors who cannot see the image. Text captchas are read
+            character by character; math questions are read aloud without the
+            answer
+          example: true
+        - name: audioNoise
+          in: query
+          schema:
+            type: string
+          required: false
+          description: >-
+            Background noise in the audio, with audio=true: none (clearest, best
+            for accessibility), low, medium or high. Higher levels make
+            automated transcription harder and the audio harder to follow
+          example: low
+        - name: inline
+          in: query
+          schema:
+            type: boolean
+          required: false
+          description: >-
+            Return the image as a base64 data URI in dataURI (and the audio in
+            audioDataURI) instead of storing them; downloadURL and audioURL are
+            then null
+          example: true
       responses:
         '200':
           description: Successful Response
@@ -49,7 +169,7 @@ paths:
                   id: e183c54c-5bf6-455e-bc96-195685cee71c
                   expires: 1766010041360
                   solution: fwvct
-                  downloadURL: https://storage.googleapis.com/apiverve/APIData/captchagenerator/e183c54c-5bf6-455e-bc96-195685cee71c.png?GoogleAccessId=635500398038-compute%40developer.gserviceaccount.com&Expires=1766010041&Signature=LLBhTrpVAk%2Bzx%2B2U7sdbIfjUOm%2FEe4hP7ebqGfphThctFRbHs9oyHPJ3J7BCAu71WswQr1qOKh%2BQddOPTGFCVUVL%2BlN1Qxt%2BlIBXYVM7%2FzW3YlfbHmFbXaesr%2BC7pFW6ekZ88fobbOP%2FcGbKdtVL1Vz9ceomtqUw%2Bl9Mwy3FCkpmwPHzGxW56%2BAHB%2B5TQgH2S%2FcmkJkPUxMSGnztQerMNB7V2JrhpuBLZl7N%2FPRucwJswVX6LYYOfNlvrFuxwJwS%2BBot9TesdYlPPDZgOfBo0%2FGgGMzIc753aPUIzkJoeMyPZgJGRilPQNrWJgp%2F7mmx4WNq6QgdIZPlQ36FlDHMsg%3D%3D
+                  downloadURL: https://storage.googleapis.com/apiverve/APIData/captchagenerator/e183c54c-5bf6-455e-bc96-195685cee71c.gif?GoogleAccessId=635500398038-compute%40developer.gserviceaccount.com&Expires=1766010041&Signature=LLBhTrpVAk%2Bzx%2B2U7sdbIfjUOm%2FEe4hP7ebqGfphThctFRbHs9oyHPJ3J7BCAu71WswQr1qOKh%2BQddOPTGFCVUVL%2BlN1Qxt%2BlIBXYVM7%2FzW3YlfbHmFbXaesr%2BC7pFW6ekZ88fobbOP%2FcGbKdtVL1Vz9ceomtqUw%2Bl9Mwy3FCkpmwPHzGxW56%2BAHB%2B5TQgH2S%2FcmkJkPUxMSGnztQerMNB7V2JrhpuBLZl7N%2FPRucwJswVX6LYYOfNlvrFuxwJwS%2BBot9TesdYlPPDZgOfBo0%2FGgGMzIc753aPUIzkJoeMyPZgJGRilPQNrWJgp%2F7mmx4WNq6QgdIZPlQ36FlDHMsg%3D%3D
         '401':
           description: Your request was not authorized, or your API Key was invalid
         '404':

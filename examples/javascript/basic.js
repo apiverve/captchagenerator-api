@@ -13,7 +13,22 @@ const API_URL = 'https://api.apiverve.com/v1/captchagenerator';
  */
 async function callCaptchaGeneratorAPI() {
   try {
-    const response = await fetch(API_URL, {
+    // Query parameters
+    const params &#x3D; new URLSearchParams({
+            type: &#x27;math&#x27;,
+            length: 6,
+            charset: &#x27;alphanumeric&#x27;,
+            unambiguous: true,
+            difficulty: &#x27;hard&#x27;,
+            width: 240,
+            height: 80,
+            format: &#x27;png&#x27;,
+            audio: true,
+            audioNoise: &#x27;low&#x27;,
+            inline: true
+        });
+
+    const response = await fetch(`${API_URL}?${params}`, {
       method: 'GET',
       headers: {
         'x-api-key': API_KEY

@@ -1,6 +1,6 @@
 # [Captcha Generator API](https://apiverve.com/marketplace/captchagenerator?utm_source&#x3D;github&amp;utm_medium&#x3D;referral&amp;utm_content&#x3D;readme)
 
-Captcha Generator generates visual captcha challenges with signed image URLs and text solutions. Each request delivers a challenge image, its correct answer string, an expiration timestamp, and a unique identifier.
+Captcha Generator creates a new captcha on every call: distorted characters or a simple math question as a GIF or PNG, with the answer to check on your server. Add audio&#x3D;true for a spoken version, the accessible alternative for visitors who can&#x27;t see the image.
 
 The Captcha Generator API provides a simple, reliable way to integrate captcha generator functionality into your applications. Built for developers who need production-ready captcha generator capabilities without the complexity of building from scratch.
 
@@ -30,7 +30,21 @@ The Captcha Generator API provides a simple, reliable way to integrate captcha g
 ```javascript
 async function callCaptchaGeneratorAPI() {
     try {
-        const response = await fetch('https://api.apiverve.com/v1/captchagenerator', {
+        const params = new URLSearchParams({
+            type: 'math',
+            length: 6,
+            charset: 'alphanumeric',
+            unambiguous: true,
+            difficulty: 'hard',
+            width: 240,
+            height: 80,
+            format: 'png',
+            audio: true,
+            audioNoise: 'low',
+            inline: true
+        });
+
+        const response = await fetch(`https://api.apiverve.com/v1/captchagenerator?${params}`, {
             method: 'GET',
             headers: {
                 'x-api-key': 'YOUR_API_KEY_HERE'
@@ -50,7 +64,7 @@ callCaptchaGeneratorAPI();
 ### Using cURL
 
 ```bash
-curl -X GET "https://api.apiverve.com/v1/captchagenerator" \
+curl -X GET "https://api.apiverve.com/v1/captchagenerator?type=math&length=6&charset=alphanumeric&unambiguous=true&difficulty=hard&width=240&height=80&format=png&audio=true&audioNoise=low&inline=true" \
   -H "x-api-key: YOUR_API_KEY_HERE"
 ```
 
@@ -210,7 +224,7 @@ A real response from the Captcha Generator API:
     "id": "e183c54c-5bf6-455e-bc96-195685cee71c",
     "expires": 1766010041360,
     "solution": "fwvct",
-    "downloadURL": "https://storage.googleapis.com/apiverve/APIData/captchagenerator/e183c54c-5bf6-455e-bc96-195685cee71c.png?GoogleAccessId=635500398038-compute%40developer.gserviceaccount.com&Expires=1766010041&Signature=LLBhTrpVAk%2Bzx%2B2U7sdbIfjUOm%2FEe4hP7ebqGfphThctFRbHs9oyHPJ3J7BCAu71WswQr1qOKh%2BQddOPTGFCVUVL%2BlN1Qxt%2BlIBXYVM7%2FzW3YlfbHmFbXaesr%2BC7pFW6ekZ88fobbOP%2FcGbKdtVL1Vz9ceomtqUw%2Bl9Mwy3FCkpmwPHzGxW56%2BAHB%2B5TQgH2S%2FcmkJkPUxMSGnztQerMNB7V2JrhpuBLZl7N%2FPRucwJswVX6LYYOfNlvrFuxwJwS%2BBot9TesdYlPPDZgOfBo0%2FGgGMzIc753aPUIzkJoeMyPZgJGRilPQNrWJgp%2F7mmx4WNq6QgdIZPlQ36FlDHMsg%3D%3D"
+    "downloadURL": "https://storage.googleapis.com/apiverve/APIData/captchagenerator/e183c54c-5bf6-455e-bc96-195685cee71c.gif?GoogleAccessId=635500398038-compute%40developer.gserviceaccount.com&Expires=1766010041&Signature=LLBhTrpVAk%2Bzx%2B2U7sdbIfjUOm%2FEe4hP7ebqGfphThctFRbHs9oyHPJ3J7BCAu71WswQr1qOKh%2BQddOPTGFCVUVL%2BlN1Qxt%2BlIBXYVM7%2FzW3YlfbHmFbXaesr%2BC7pFW6ekZ88fobbOP%2FcGbKdtVL1Vz9ceomtqUw%2Bl9Mwy3FCkpmwPHzGxW56%2BAHB%2B5TQgH2S%2FcmkJkPUxMSGnztQerMNB7V2JrhpuBLZl7N%2FPRucwJswVX6LYYOfNlvrFuxwJwS%2BBot9TesdYlPPDZgOfBo0%2FGgGMzIc753aPUIzkJoeMyPZgJGRilPQNrWJgp%2F7mmx4WNq6QgdIZPlQ36FlDHMsg%3D%3D"
   }
 }
 ```

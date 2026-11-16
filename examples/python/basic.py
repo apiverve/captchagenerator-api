@@ -17,11 +17,14 @@ def call_captchagenerator_api():
     Make a GET request to the Captcha Generator API
     """
     try:
+        # Query parameters
+        params &#x3D; {&#x27;type&#x27;: &#x27;math&#x27;, &#x27;length&#x27;: 6, &#x27;charset&#x27;: &#x27;alphanumeric&#x27;, &#x27;unambiguous&#x27;: true, &#x27;difficulty&#x27;: &#x27;hard&#x27;, &#x27;width&#x27;: 240, &#x27;height&#x27;: 80, &#x27;format&#x27;: &#x27;png&#x27;, &#x27;audio&#x27;: true, &#x27;audioNoise&#x27;: &#x27;low&#x27;, &#x27;inline&#x27;: true}
+
         headers = {
             'x-api-key': API_KEY
         }
 
-        response = requests.get(API_URL, headers=headers)
+        response = requests.get(API_URL, headers=headers, params=params)
 
         # Raise exception for HTTP errors
         response.raise_for_status()

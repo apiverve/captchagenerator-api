@@ -12,8 +12,22 @@ public class BasicExample {
         CaptchaGeneratorAPIClient client = new CaptchaGeneratorAPIClient("YOUR_API_KEY_HERE");
 
         try {
-            // Execute the API request (no parameters required)
-            APIResponse response = client.execute(null);
+            // Query parameters
+            Map&lt;String, Object&gt; parameters &#x3D; new HashMap&lt;&gt;();
+        parameters.put(&quot;type&quot;, &quot;math&quot;);
+        parameters.put(&quot;length&quot;, 6);
+        parameters.put(&quot;charset&quot;, &quot;alphanumeric&quot;);
+        parameters.put(&quot;unambiguous&quot;, true);
+        parameters.put(&quot;difficulty&quot;, &quot;hard&quot;);
+        parameters.put(&quot;width&quot;, 240);
+        parameters.put(&quot;height&quot;, 80);
+        parameters.put(&quot;format&quot;, &quot;png&quot;);
+        parameters.put(&quot;audio&quot;, true);
+        parameters.put(&quot;audioNoise&quot;, &quot;low&quot;);
+        parameters.put(&quot;inline&quot;, true);
+
+            // Execute the API request
+            APIResponse response = client.execute(parameters);
 
             // Check if the request was successful
             if (response.isSuccess()) {
