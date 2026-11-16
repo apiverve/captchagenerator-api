@@ -75,3 +75,51 @@ class CaptchageneratorData {
       downloadURL: json['downloadURL'],
     );
 }
+
+class CaptchageneratorRequest {
+  String? type;
+  int? length;
+  String? charset;
+  bool? unambiguous;
+  String? difficulty;
+  int? width;
+  int? height;
+  String? format;
+  String? color;
+  String? backgroundColor;
+  bool? audio;
+  String? audioNoise;
+  bool? inline;
+
+  CaptchageneratorRequest({
+    this.type,
+    this.length,
+    this.charset,
+    this.unambiguous,
+    this.difficulty,
+    this.width,
+    this.height,
+    this.format,
+    this.color,
+    this.backgroundColor,
+    this.audio,
+    this.audioNoise,
+    this.inline,
+  });
+
+  Map<String, dynamic> toJson() => {
+      if (type != null) 'type': type,
+      if (length != null) 'length': length,
+      if (charset != null) 'charset': charset,
+      if (unambiguous != null) 'unambiguous': unambiguous,
+      if (difficulty != null) 'difficulty': difficulty,
+      if (width != null) 'width': width,
+      if (height != null) 'height': height,
+      if (format != null) 'format': format,
+      if (color != null) 'color': color,
+      if (backgroundColor != null) 'backgroundColor': backgroundColor,
+      if (audio != null) 'audio': audio,
+      if (audioNoise != null) 'audioNoise': audioNoise,
+      if (inline != null) 'inline': inline,
+    };
+}

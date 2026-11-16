@@ -49,14 +49,40 @@ final _formatPatterns = {
 /// For more information, visit: https://apiverve.com/marketplace/captchagenerator?utm_source=dart&utm_medium=referral&utm_content=readme
 ///
 /// Parameters:
-
+/// * [type] - text draws random characters; math draws an arithmetic question such as 7 + 4 = ? and the solution is the answer. length, charset and unambiguous apply to text only
+/// * [length] - Number of characters in the captcha (4-8) (text only) [min: 4, max: 8]
+/// * [charset] - Characters to draw from: lowercase letters, uppercase letters, mixed-case letters, digits, or letters and digits (text only)
+/// * [unambiguous] - Leave out characters that are easy to misread: 0, O, o, 1, l, I, i and Q (text only)
+/// * [difficulty] - Distortion level. Harder levels add more rotation, warp, noise lines, background texture and a line through the text. For type=math it also sets the numbers: small additions and subtractions at easy, larger ones at medium, multiplication at hard. It does not change the audio; see audioNoise
+/// * [width] - Image width in pixels (100-400) [min: 100, max: 400]
+/// * [height] - Image height in pixels (40-150) [min: 40, max: 150]
+/// * [format] - Image format
+/// * [color] - Text color as a hex code (e.g. #1d3557). By default each character gets a random dark color
+/// * [backgroundColor] - Background color as a hex code (e.g. #ffffff)
+/// * [audio] - Also return a spoken WAV version of the same challenge in audioURL, for visitors who cannot see the image. Text captchas are read character by character; math questions are read aloud without the answer
+/// * [audioNoise] - Background noise in the audio, with audio=true: none (clearest, best for accessibility), low, medium or high. Higher levels make automated transcription harder and the audio harder to follow
+/// * [inline] - Return the image as a base64 data URI in dataURI (and the audio in audioDataURI) instead of storing them; downloadURL and audioURL are then null
 class CaptchageneratorClient {
   final String apiKey;
   final String baseUrl;
   final http.Client _httpClient;
 
   /// Validation rules for parameters.
-  static final Map<String, ValidationRule> _validationRules = <String, ValidationRule>{};
+  static final Map<String, ValidationRule> _validationRules = <String, ValidationRule>{
+    'type': ValidationRule(type: 'string', required: false),
+    'length': ValidationRule(type: 'integer', required: false, min: 4, max: 8),
+    'charset': ValidationRule(type: 'string', required: false),
+    'unambiguous': ValidationRule(type: 'boolean', required: false),
+    'difficulty': ValidationRule(type: 'string', required: false),
+    'width': ValidationRule(type: 'integer', required: false, min: 100, max: 400),
+    'height': ValidationRule(type: 'integer', required: false, min: 40, max: 150),
+    'format': ValidationRule(type: 'string', required: false),
+    'color': ValidationRule(type: 'string', required: false),
+    'backgroundColor': ValidationRule(type: 'string', required: false),
+    'audio': ValidationRule(type: 'boolean', required: false),
+    'audioNoise': ValidationRule(type: 'string', required: false),
+    'inline': ValidationRule(type: 'boolean', required: false),
+  };
 
   CaptchageneratorClient(this.apiKey, {
     this.baseUrl = 'https://api.apiverve.com/v1/captchagenerator',
@@ -124,13 +150,17 @@ class CaptchageneratorClient {
   /// Execute a request to the Captcha Generator API.
   ///
   /// Parameters are validated before sending the request.
-  Future<CaptchageneratorResponse> execute() async {
+  Future<CaptchageneratorResponse> execute(Map<String, dynamic> params) async {
+    // Validate parameters
+    _validateParams(params);
     if (apiKey.isEmpty) {
       throw CaptchageneratorException('API key is required. Get your API key at: https://apiverve.com');
     }
 
     try {
-      final uri = Uri.parse(baseUrl);
+      final uri = Uri.parse(baseUrl).replace(
+        queryParameters: params.map((key, value) => MapEntry(key, value.toString())),
+      );
 
       final response = await _httpClient.get(
         uri,

@@ -1,6 +1,6 @@
 name: apiverve_captchagenerator
-description: "Captcha Generator generates visual captcha challenges with signed image URLs and text solutions. Each request delivers a challenge image, its correct answer string, an expiration timestamp, and a unique identifier."
-version: 1.2.5
+description: "Captcha Generator creates a new captcha on every call: distorted characters or a simple math question as a GIF or PNG, with the answer to check on your server. Add audio=true for a spoken version, the accessible alternative for visitors who can't see the image."
+version: 1.2.6
 homepage: https://apiverve.com/marketplace/captchagenerator?utm_source=dart&utm_medium=referral&utm_content=homepage
 repository: https://github.com/apiverve/captchagenerator-api/tree/main/dart
 
