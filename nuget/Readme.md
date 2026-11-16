@@ -1,7 +1,7 @@
 Captcha Generator API
 ============
 
-Captcha Generator generates visual captcha challenges with signed image URLs and text solutions. Each request delivers a challenge image, its correct answer string, an expiration timestamp, and a unique identifier.
+Captcha Generator creates a new captcha on every call: distorted characters or a simple math question as a GIF or PNG, with the answer to check on your server. Add audio=true for a spoken version, the accessible alternative for visitors who can't see the image.
 
 
 [![NuGet version](https://img.shields.io/nuget/v/APIVerve.API.CaptchaGenerator.svg)](https://www.nuget.org/packages/APIVerve.API.CaptchaGenerator)
@@ -59,12 +59,26 @@ class Program
         // Initialize the API client
         var apiClient = new CaptchaGeneratorAPIClient("[YOUR_API_KEY]");
 
-        // This API does not require a Query
+        var queryOptions = new CaptchaGeneratorQueryOptions {
+            Type = "text",
+            Length = 5,
+            Charset = "lowercase",
+            Unambiguous = true,
+            Difficulty = "medium",
+            Width = 200,
+            Height = 70,
+            Format = "gif",
+            Color = "#1d3557",
+            BackgroundColor = "#ffffff",
+            Audio = true,
+            AudioNoise = "none",
+            Inline = true
+        };
 
         // Make the API call
         try
         {
-            var response = await apiClient.ExecuteAsync();
+            var response = await apiClient.ExecuteAsync(queryOptions);
 
             if (response.Error != null)
             {
@@ -121,9 +135,23 @@ public class Example
     {
         var apiClient = new CaptchaGeneratorAPIClient("[YOUR_API_KEY]");
 
-        // This API does not require a Query
+        var queryOptions = new CaptchaGeneratorQueryOptions {
+            Type = "text",
+            Length = 5,
+            Charset = "lowercase",
+            Unambiguous = true,
+            Difficulty = "medium",
+            Width = 200,
+            Height = 70,
+            Format = "gif",
+            Color = "#1d3557",
+            BackgroundColor = "#ffffff",
+            Audio = true,
+            AudioNoise = "none",
+            Inline = true
+        };
 
-        var response = await apiClient.ExecuteAsync();
+        var response = await apiClient.ExecuteAsync(queryOptions);
 
         if (response.Error != null)
         {
@@ -151,9 +179,23 @@ public class Example
     {
         var apiClient = new CaptchaGeneratorAPIClient("[YOUR_API_KEY]");
 
-        // This API does not require a Query
+        var queryOptions = new CaptchaGeneratorQueryOptions {
+            Type = "text",
+            Length = 5,
+            Charset = "lowercase",
+            Unambiguous = true,
+            Difficulty = "medium",
+            Width = 200,
+            Height = 70,
+            Format = "gif",
+            Color = "#1d3557",
+            BackgroundColor = "#ffffff",
+            Audio = true,
+            AudioNoise = "none",
+            Inline = true
+        };
 
-        var response = apiClient.Execute();
+        var response = apiClient.Execute(queryOptions);
 
         if (response.Error != null)
         {
@@ -186,11 +228,25 @@ public class Example
     {
         var apiClient = new CaptchaGeneratorAPIClient("[YOUR_API_KEY]");
 
-        // This API does not require a Query
+        var queryOptions = new CaptchaGeneratorQueryOptions {
+            Type = "text",
+            Length = 5,
+            Charset = "lowercase",
+            Unambiguous = true,
+            Difficulty = "medium",
+            Width = 200,
+            Height = 70,
+            Format = "gif",
+            Color = "#1d3557",
+            BackgroundColor = "#ffffff",
+            Audio = true,
+            AudioNoise = "none",
+            Inline = true
+        };
 
         try
         {
-            var response = await apiClient.ExecuteAsync();
+            var response = await apiClient.ExecuteAsync(queryOptions);
 
             // Check for API-level errors
             if (response.Error != null)
@@ -240,11 +296,25 @@ public class Example
         apiClient.SetMaxRetries(3);        // Retry up to 3 times (default: 0, max: 3)
         apiClient.SetRetryDelay(2000);     // Wait 2 seconds between retries
 
-        // This API does not require a Query
+        var queryOptions = new CaptchaGeneratorQueryOptions {
+            Type = "text",
+            Length = 5,
+            Charset = "lowercase",
+            Unambiguous = true,
+            Difficulty = "medium",
+            Width = 200,
+            Height = 70,
+            Format = "gif",
+            Color = "#1d3557",
+            BackgroundColor = "#ffffff",
+            Audio = true,
+            AudioNoise = "none",
+            Inline = true
+        };
 
         try
         {
-            var response = await apiClient.ExecuteAsync();
+            var response = await apiClient.ExecuteAsync(queryOptions);
 
             if (response.Error != null)
             {
@@ -279,9 +349,23 @@ var apiClient = new CaptchaGeneratorAPIClient("[YOUR_API_KEY]");
 apiClient.AddCustomHeader("X-Custom-Header", "custom-value");
 apiClient.AddCustomHeader("X-Request-ID", Guid.NewGuid().ToString());
 
-// This API does not require a Query
+var queryOptions = new CaptchaGeneratorQueryOptions {
+    Type = "text",
+    Length = 5,
+    Charset = "lowercase",
+    Unambiguous = true,
+    Difficulty = "medium",
+    Width = 200,
+    Height = 70,
+    Format = "gif",
+    Color = "#1d3557",
+    BackgroundColor = "#ffffff",
+    Audio = true,
+    AudioNoise = "none",
+    Inline = true
+};
 
-var response = await apiClient.ExecuteAsync();
+var response = await apiClient.ExecuteAsync(queryOptions);
 
 // Remove a header
 apiClient.RemoveCustomHeader("X-Custom-Header");
@@ -303,9 +387,23 @@ apiClient.SetLogger(message =>
     Console.WriteLine($"[LOG] {DateTime.Now:yyyy-MM-dd HH:mm:ss} - {message}");
 });
 
-// This API does not require a Query
+var queryOptions = new CaptchaGeneratorQueryOptions {
+    Type = "text",
+    Length = 5,
+    Charset = "lowercase",
+    Unambiguous = true,
+    Difficulty = "medium",
+    Width = 200,
+    Height = 70,
+    Format = "gif",
+    Color = "#1d3557",
+    BackgroundColor = "#ffffff",
+    Audio = true,
+    AudioNoise = "none",
+    Inline = true
+};
 
-var response = await apiClient.ExecuteAsync();
+var response = await apiClient.ExecuteAsync(queryOptions);
 ```
 
 ### Retry Configuration
@@ -319,9 +417,23 @@ var apiClient = new CaptchaGeneratorAPIClient("[YOUR_API_KEY]");
 apiClient.SetMaxRetries(3);           // Retry up to 3 times (default: 0, max: 3)
 apiClient.SetRetryDelay(1500);        // Wait 1.5 seconds between retries (default: 1000ms)
 
-// This API does not require a Query
+var queryOptions = new CaptchaGeneratorQueryOptions {
+    Type = "text",
+    Length = 5,
+    Charset = "lowercase",
+    Unambiguous = true,
+    Difficulty = "medium",
+    Width = 200,
+    Height = 70,
+    Format = "gif",
+    Color = "#1d3557",
+    BackgroundColor = "#ffffff",
+    Audio = true,
+    AudioNoise = "none",
+    Inline = true
+};
 
-var response = await apiClient.ExecuteAsync();
+var response = await apiClient.ExecuteAsync(queryOptions);
 ```
 
 ### Dispose Pattern
@@ -329,11 +441,25 @@ var response = await apiClient.ExecuteAsync();
 The API client implements `IDisposable` for proper resource cleanup:
 
 ```csharp
-// This API does not require a Query
+var queryOptions = new CaptchaGeneratorQueryOptions {
+    Type = "text",
+    Length = 5,
+    Charset = "lowercase",
+    Unambiguous = true,
+    Difficulty = "medium",
+    Width = 200,
+    Height = 70,
+    Format = "gif",
+    Color = "#1d3557",
+    BackgroundColor = "#ffffff",
+    Audio = true,
+    AudioNoise = "none",
+    Inline = true
+};
 
 using (var apiClient = new CaptchaGeneratorAPIClient("[YOUR_API_KEY]"))
 {
-    var response = await apiClient.ExecuteAsync();
+    var response = await apiClient.ExecuteAsync(queryOptions);
     Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(response, Newtonsoft.Json.Formatting.Indented));
 }
 // HttpClient is automatically disposed here
@@ -351,7 +477,7 @@ using (var apiClient = new CaptchaGeneratorAPIClient("[YOUR_API_KEY]"))
     "id": "e183c54c-5bf6-455e-bc96-195685cee71c",
     "expires": 1766010041360,
     "solution": "fwvct",
-    "downloadURL": "https://storage.googleapis.com/apiverve/APIData/captchagenerator/e183c54c-5bf6-455e-bc96-195685cee71c.png?GoogleAccessId=635500398038-compute%40developer.gserviceaccount.com&Expires=1766010041&Signature=LLBhTrpVAk%2Bzx%2B2U7sdbIfjUOm%2FEe4hP7ebqGfphThctFRbHs9oyHPJ3J7BCAu71WswQr1qOKh%2BQddOPTGFCVUVL%2BlN1Qxt%2BlIBXYVM7%2FzW3YlfbHmFbXaesr%2BC7pFW6ekZ88fobbOP%2FcGbKdtVL1Vz9ceomtqUw%2Bl9Mwy3FCkpmwPHzGxW56%2BAHB%2B5TQgH2S%2FcmkJkPUxMSGnztQerMNB7V2JrhpuBLZl7N%2FPRucwJswVX6LYYOfNlvrFuxwJwS%2BBot9TesdYlPPDZgOfBo0%2FGgGMzIc753aPUIzkJoeMyPZgJGRilPQNrWJgp%2F7mmx4WNq6QgdIZPlQ36FlDHMsg%3D%3D"
+    "downloadURL": "https://storage.googleapis.com/apiverve/APIData/captchagenerator/e183c54c-5bf6-455e-bc96-195685cee71c.gif?GoogleAccessId=635500398038-compute%40developer.gserviceaccount.com&Expires=1766010041&Signature=LLBhTrpVAk%2Bzx%2B2U7sdbIfjUOm%2FEe4hP7ebqGfphThctFRbHs9oyHPJ3J7BCAu71WswQr1qOKh%2BQddOPTGFCVUVL%2BlN1Qxt%2BlIBXYVM7%2FzW3YlfbHmFbXaesr%2BC7pFW6ekZ88fobbOP%2FcGbKdtVL1Vz9ceomtqUw%2Bl9Mwy3FCkpmwPHzGxW56%2BAHB%2B5TQgH2S%2FcmkJkPUxMSGnztQerMNB7V2JrhpuBLZl7N%2FPRucwJswVX6LYYOfNlvrFuxwJwS%2BBot9TesdYlPPDZgOfBo0%2FGgGMzIc753aPUIzkJoeMyPZgJGRilPQNrWJgp%2F7mmx4WNq6QgdIZPlQ36FlDHMsg%3D%3D"
   }
 }
 ```

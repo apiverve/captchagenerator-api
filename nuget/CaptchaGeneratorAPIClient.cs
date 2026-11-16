@@ -65,7 +65,22 @@ namespace APIVerve.API.CaptchaGenerator
         private readonly string _method = "GET";
 
         /// <summary>Validation rules for parameters</summary>
-        private static readonly Dictionary<string, ValidationRule> _validationRules = new Dictionary<string, ValidationRule>();
+        private static readonly Dictionary<string, ValidationRule> _validationRules = new Dictionary<string, ValidationRule>
+        {
+            { "type", new ValidationRule { Type = "string", Required = false } },
+            { "length", new ValidationRule { Type = "integer", Required = false, Min = 4, Max = 8 } },
+            { "charset", new ValidationRule { Type = "string", Required = false } },
+            { "unambiguous", new ValidationRule { Type = "boolean", Required = false } },
+            { "difficulty", new ValidationRule { Type = "string", Required = false } },
+            { "width", new ValidationRule { Type = "integer", Required = false, Min = 100, Max = 400 } },
+            { "height", new ValidationRule { Type = "integer", Required = false, Min = 40, Max = 150 } },
+            { "format", new ValidationRule { Type = "string", Required = false } },
+            { "color", new ValidationRule { Type = "string", Required = false } },
+            { "backgroundColor", new ValidationRule { Type = "string", Required = false } },
+            { "audio", new ValidationRule { Type = "boolean", Required = false } },
+            { "audioNoise", new ValidationRule { Type = "string", Required = false } },
+            { "inline", new ValidationRule { Type = "boolean", Required = false } }
+        };
 
         /// <summary>Format validation patterns</summary>
         private static readonly Dictionary<string, System.Text.RegularExpressions.Regex> _formatPatterns = new Dictionary<string, System.Text.RegularExpressions.Regex>
